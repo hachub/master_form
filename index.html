@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Master form</title>
+  <link rel="stylesheet" href="theme.css"/>
+</head>
+<body>
+<h1>Form</h1>
+<div class="container pt-5" id="app">
+  <div class="card">
+    <div class="steps">
+      <div v-show="activeStep === 'Personal'">Content 1</div>
+      <div v-show="activeStep === 'Address'">Content 2</div>
+      <div v-show="activeStep === 'Payment'">Content 3</div>
+      <div v-show="activeStep === 'Settings'">Content 3</div>
+
+      <ul class="steps-list">
+        <li
+            class="steps-item"
+            v-for="(step, idx) in steps"
+            :class="{
+              active: idx === activeIdx,
+              done: idx < activeIdx
+            }"
+        >
+          <span @click="setActive(idx)">{{ idx + 1 }}</span>
+          {{ step.title }}
+        </li>
+      </ul>
+      <div v-if="1 === 1">
+        <button class="btn" :disabled="prevDisabled" @click="prev">Назад</button>
+        <button class="btn primary" @click="submit">
+          {{ isFinished ? 'Закончить' : 'Вперед' }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script src="https://unpkg.com/vue@next"></script>
+<script src="app.js"></script>
+</body>
+</html>
